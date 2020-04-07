@@ -11,15 +11,28 @@ app.get('/', function(req, res) {
 });
 
 ioInstance.on('connection', function(socket) {
-  console.log('a user connected');
+  console.log('socket created');
+
+  let userName = 'anonymous';
+  socket.emit('server message', `SERVER: Welcome to the void.`);
+  socket.broadcast.emit('server message', `SERVER: User ${userName} connected.`);
+
+  socket.on('set user', function(id) {
+    const oldUsername = userName;
+    userName = id;
+    console.log(`user with id ${userName} connected`);
+    socket.emit('server message', `SERVER: Your username was changed to ${userName}.`);
+    socket.broadcast.emit('server message', `SERVER: User ${oldUsername} changed their name to ${userName}.`);
+  });
 
   socket.on('disconnect', function(){
-    console.log('user disconnected');
+    console.log(`user with id ${userName} disconnected`);
+    ioInstance.emit('server message', `SERVER: User with id ${userName} disconnected.`);
   });
 
   socket.on('chat message', function(msg) {
     console.log('message: ' + msg);
-    ioInstance.emit('chat message', msg);
+    ioInstance.emit('chat message', `${userName}: ${msg}`);
   });
 })
 
