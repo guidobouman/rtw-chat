@@ -2,14 +2,25 @@
 
 A small demo to demonstate sockets beyond the basic demo.
 
-# Message types
+## Setup
 
-## Client
-- `set user`
-  Set your username
-- `chat message`
-  Send a chat message to other people in the chat
+### Development
+Install and start the server with the following commands.
 
-## Server
-- `server message`
-  Send a notification to clients
+```
+npm install
+npm start
+```
+
+### Tech
+The package `nodemon` is used to autorestart the application on changes, `esm` is used to be able to use ES Module syntax instead of `require`. The demo is based on the basic Socket.io demo, so the `socket.io` package is used to handle all socket logic.
+
+## Message types
+There are multiple message types to organise all messages that flow through the sockets. This provides a helpful structure during development.
+
+### Client
+- `set user` - Set your username
+- `chat message` - Send a chat message to other people in the chat
+
+### Server
+- `server message` - Send a server notification to clients
