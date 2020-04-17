@@ -6,6 +6,8 @@ const app = express();
 const server = http.createServer(app);
 const ioInstance = socketIO(server);
 
+const rooms = {};
+
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
 });
@@ -16,6 +18,25 @@ ioInstance.on('connection', function(socket) {
   let userName = 'anonymous';
   socket.emit('server message', `SERVER: Welcome to the void.`);
   socket.broadcast.emit('server message', `SERVER: User ${userName} connected.`);
+
+  socket.on('join room', function(roomId) {
+    const room = rooms[roomId] || {
+      members: [],
+      roomLimit: 5
+    };
+
+    // if(room.members.length >= room.roomLimit) {
+    //   socket.emit('server message', `SERVER: Sorry, room ${roomId} is full right now`);
+    //   return;
+    // }
+
+    if(eliteMembers.indexOf(userName) == -1) {
+      socket.emit('server message', `SERVER: Sorry, you're not elite`);
+      return;
+    }
+
+    // join the room
+  });
 
   socket.on('set user', function(id) {
     const oldUsername = userName;
