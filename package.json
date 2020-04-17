@@ -6,6 +6,7 @@
   "module": "main.js",
   "scripts": {
     "start": "nodemon index.js",
+    "server": "nodemon server-index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Guido Bouman <guido@q42.nl>",
