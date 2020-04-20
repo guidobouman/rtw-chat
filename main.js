@@ -24,13 +24,21 @@ externalData.on('event occured', function(event) {
   if(lastAverage < 500 && average > 500) {
     console.log('now positive');
     ioInstance.emit('server message', `SERVER: the trend has changed and is now positive`);
+    ioInstance.emit('trend positive', {
+      lastAverage,
+      average
+    });
   }
   if(lastAverage > 500 && average < 500) {
     console.log('now negative');
     ioInstance.emit('server message', `SERVER: the trend has changed and is now negative`);
+    ioInstance.emit('trend negative', {
+      lastAverage,
+      average
+    });
   }
 
-  // ioInstance.emit('server message', `SERVER: the trend has changed ${average > 500 ? 'positive' : 'negative'}`);
+  // ioInstance.emit('server message', `SERVER: the trend is ${average > 500 ? 'positive' : 'negative'}`);
 
   // ioInstance.emit('average', `SERVER: the average right now is ${average > 500 ? 'positive' : 'negative'}`);
   // ioInstance.emit('trend direction', `SERVER: the trend right now is going ${average > lastAverage ? 'up' : 'down'}`);
