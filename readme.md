@@ -15,6 +15,9 @@ npm start
 ### Tech
 The package `nodemon` is used to autorestart the application on changes, `esm` is used to be able to use ES Module syntax instead of `require`. The demo is based on the basic Socket.io demo, so the `socket.io` package is used to handle all socket logic.
 
+## Data lifecycle diagram
+> Insert your diagram
+
 ## Message types
 There are multiple message types to organise all messages that flow through the sockets. This provides a helpful structure during development.
 
