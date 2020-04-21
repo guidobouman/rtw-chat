@@ -24,3 +24,10 @@ There are multiple message types to organise all messages that flow through the 
 
 ### Server
 - `server message` - Send a server notification to clients
+
+## Credits
+- [Razpudding](https://github.com/Razpudding) - For thinking along
+- [Socket.io](https://socket.io/) - For the basic tutorial & their fantastic library
+
+## License
+See the LICENSE file in the root of this repository.
